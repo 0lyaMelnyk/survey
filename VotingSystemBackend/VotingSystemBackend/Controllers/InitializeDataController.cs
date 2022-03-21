@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.RequestHandlers;
+using VotingSystemBackend.Requests;
 
 namespace VotingSystemBackend.Controllers
 {
@@ -13,9 +14,9 @@ namespace VotingSystemBackend.Controllers
     {
         [HttpPost("post")]
        // [Authorize]
-        public async Task<IActionResult> PostVoterData([FromServices] PostVoterDataRequestHandler requestHandler)
+        public async Task<IActionResult> PostVoterData([FromQuery] PostVoterDataRequest request,[FromServices] PostVoterDataRequestHandler requestHandler)
         {
-            var response = await requestHandler.Handle();
+            var response = await requestHandler.Handle(request);
             return Ok(response);
         }
         [HttpGet]

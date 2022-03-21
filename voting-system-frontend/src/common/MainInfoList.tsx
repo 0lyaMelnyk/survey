@@ -42,6 +42,7 @@ export default function BasicList() {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemText primary="ПІБ семінариста" />
+              <LectureSelect/>
             </ListItemButton>
           </ListItem>
         </List>

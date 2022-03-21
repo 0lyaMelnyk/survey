@@ -9,8 +9,8 @@ namespace VotingSystemBackend.Models
         public string LevelName { get; set; } = "Бакалавр";
         public List<SubjectDto> SubjectDtos { get; set; } = new List<SubjectDto>()
         {
-            new SubjectDto(){ Faculty="ФРЕКС", SemesterCount=8, SubjectName="САП", SubjectId = 1},
-            new SubjectDto(){ Faculty="ФРЕКС", SemesterCount=8, SubjectName="Мікропроцесорна техніка", SubjectId=2}
+            new SubjectDto(){ Faculty="ФРЕКС", Semester=8, SubjectName="САП", SubjectId = 1},
+            new SubjectDto(){ Faculty="ФРЕКС", Semester=8, SubjectName="Мікропроцесорна техніка", SubjectId=2}
         };
         public List<TeacherDto> TeacherDtos { get; set; } = new List<TeacherDto>()
         {

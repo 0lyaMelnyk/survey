@@ -23,79 +23,79 @@ function createData(
 }
 
 const rows = [
-  createData(0,1,2,3,4,5)
+  createData(0, 1, 2, 3, 4, 5)
 ];
 
 export default function MarksTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        
+
         <TableBody>
           {rows.map((row) => (
             <TableRow>
               <TableCell align="right">
-              <FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend"></FormLabel>
+                  <RadioGroup
+                    aria-label="gender"
+                    defaultValue="female"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel value="" control={<Radio />} label="" />
+                  </RadioGroup>
+                </FormControl>
               </TableCell>
               <TableCell align="right"><FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl></TableCell>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="" control={<Radio />} label="" />
+                </RadioGroup>
+              </FormControl></TableCell>
               <TableCell align="right"><FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl></TableCell>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="" control={<Radio />} label="" />
+                </RadioGroup>
+              </FormControl></TableCell>
               <TableCell align="right"><FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl></TableCell>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="" control={<Radio />} label="" />
+                </RadioGroup>
+              </FormControl></TableCell>
               <TableCell align="right"><FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl></TableCell>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="" control={<Radio />} label="" />
+                </RadioGroup>
+              </FormControl></TableCell>
               <TableCell align="right"><FormControl component="fieldset">
-  <FormLabel component="legend"></FormLabel>
-  <RadioGroup
-    aria-label="gender"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="" control={<Radio />} label="" />
-  </RadioGroup>
-</FormControl></TableCell>
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="" control={<Radio />} label="" />
+                </RadioGroup>
+              </FormControl></TableCell>
             </TableRow>
           ))}
         </TableBody>
