@@ -1,11 +1,16 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+const names = [
+  'Функціональне програмування',
+  'Цифрова обробка сигналів',
+  'Системи автоматизації підприємств',
+  'Периферійні пристрої',
+];
 export default function SubjectSelect() {
+ 
   const [subject, setId] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -13,8 +18,8 @@ export default function SubjectSelect() {
   };
 
   return (
-    <Box sx={{ width: 440 }}>
-      <FormControl fullWidth>
+  <div>
+      <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-simple-select-label"></InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -23,11 +28,16 @@ export default function SubjectSelect() {
           label="Subject"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Цифрова обробка сигналів</MenuItem>
-          <MenuItem value={20}>Програмування вбудованих систем</MenuItem>
-          <MenuItem value={30}>Захист інформації</MenuItem>
+         {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+            >
+              {name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-    </Box>
+    </div>
   );
 }
