@@ -1,27 +1,54 @@
-import React from 'react';
-import MarksTable from './tables/MarksTable';
-import LectureTable from './tables/LectureTable';
-import MainInfoList from './common/MainInfoList';
-
-//import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import CommonContainer from './containers/CommonContainer';
+import { Question } from './models/Question';
+import {QuestionsForm} from './containers/QuestionContainer'
+import { QuestionAnswer } from './models/QuestionAnswer';
+const answersVariants:QuestionAnswer[]=[
+    {answerId:1, answerTitle:"Повністю не погоджуюсь"},
+    {answerId:2, answerTitle:"Частково не погоджуюсь"},
+    {answerId:3, answerTitle:"Не можу дати відповідь"},
+    {answerId:4, answerTitle:"Частково погоджуюсь"},
+    {answerId:5, answerTitle:"Повністю погоджуюсь"}]
+const questionItems:Question[] = [
+    {questionId:1, questionTitle:"1.	Вміє зацікавити студентів своєю дисципліною;", answers: answersVariants},
+    {questionId:2, questionTitle:"2.	Стимулює активність, творчість та самостійну роботу студентів;", answers: answersVariants},
+    {questionId:3,questionTitle:"3.	Вільно володіє матеріалом з дисципліни;", answers: answersVariants}, 
+    {questionId:4, questionTitle:"4.	Проводить заняття професійною, виразною та чіткою мовою;", answers: answersVariants},
+    {questionId:5,questionTitle: "5.	Вміє доступно викласти матеріал дисципліни;", answers: answersVariants},
+    {questionId:6, questionTitle:"6.	Висуває чіткі та несуперечливі вимоги до студентів;", answers: answersVariants},]
+ 
+let formItems = [
+    {
+        id: 1,
+        type: 'lect_prepod',
+        answers: []
+    },
+    {
+        id: 2,
+        type: 'sem_prepod',
+        answers: []
+    },
+    {
+        id: 2,
+        type: 'subject',
+        answers: []
+    },
+]
 
 function App() {
-  return (
-    <>
-   <div>
-<div className="css-10hburv-MuiTypography-root"style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Шановні студенти!<br/>
- КНУ проводить щосеместрове опитування здобувачів вищої освіти з метою оцінки якості викладання дисциплін.<br/>
-Ваші відповіді допоможуть оцінити якість викладання та вплинути на зміни до навчальних дисциплін.<br/>
-Опитування є повністю анонімним і його результати будуть використані виключно в узагальненому вигляді. <br/>
-Сама Ваша об’єктивна думка дуже важлива для нас! 
-</div>
-<MainInfoList/>
-</div>
-<div>Позначте, будь ласка, якою мірою Ви погоджуєтесь із наведеними нижче твердженнями стосовно викладача, який читає лекції, використовуючи наведену шкалу:</div>  
+  let [formItems, setFormItem] = useState([]);
+  const [view, SetView] = useState('generateItems');
+  const onSetItems = (formItems:[]) => {
+      setFormItem(formItems);
+      SetView('Quest');
+  } 
 
-<div>Відповідь дайте, будь ласка, за кожним рядком таблиці.</div>
-<LectureTable/>
-    </>
+  return (
+      <div>
+          {
+              view === 'Quest' ? <CommonContainer onSubmit={onSetItems} /> : < QuestionsForm questions={questionItems} onSubmit={onSetItems}/>
+          }
+      </div>
   );
 }
 
