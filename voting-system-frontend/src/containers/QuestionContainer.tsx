@@ -47,10 +47,10 @@ const QuestionItem = (props: IQuestionProps): JSX.Element => {
             </div>
             {props.answers.map(item => 
                 <div key={item.answerId}>
-                    <input type="radio"
+                    <Radio 
                         checked={props.questionAnswerId == item.answerId}
                         onChange={()=>props.onAnswerChange(props.question.questionId, item.answerId)}
-                    />
+                        />
                         {item.answerTitle}
                 </div>
             )}

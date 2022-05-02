@@ -3,18 +3,25 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-const names = [
-  'Функціональне програмування',
-  'Цифрова обробка сигналів',
-  'Системи автоматизації підприємств',
-  'Периферійні пристрої',
-];
-export default function SubjectSelect() {
+import { Subject } from '../models/Subject';
+
+
+interface ISubjectSelectProps{
+  selectedSubjectId: Number,
+  subjectOptions: Subject[],
+  onSelect: Function
+}
+export function SubjectSelect (props: ISubjectSelectProps): JSX.Element{
  
-  const [subject, setId] = React.useState('');
+  const [subjectId, setSubjectId] = React.useState(props.selectedSubjectId);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setId(event.target.value as string);
+    console.log(event.target.value);
+
+    let newId=Number.parseInt(event.target.value);
+    setSubjectId(newId);
+    props.onSelect(newId);
+    console.log(newId);
   };
 
   return (
@@ -24,16 +31,16 @@ export default function SubjectSelect() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={subject}
+          value={subjectId?.toString()}
           label="Subject"
           onChange={handleChange}
         >
-         {names.map((name) => (
+         {props.subjectOptions.map((subject) => (
             <MenuItem
-              key={name}
-              value={name}
+              key={subject.subjectId}//change to id
+              value={subject.subjectId}//full object
             >
-              {name}
+              {subject.subjectName}
             </MenuItem>
           ))}
         </Select>

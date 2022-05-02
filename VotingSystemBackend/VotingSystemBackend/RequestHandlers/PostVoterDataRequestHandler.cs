@@ -8,9 +8,9 @@ namespace VotingSystemBackend.RequestHandlers
     {
         public async Task<InitialDataDto> Handle(PostVoterDataRequest request)
         {
-            DataBaseReader
-            var faculty = request.Faculty;
-            var teacherList = 
+            //DataBaseReader
+            //var faculty = request.Faculty;
+            //var teacherList = 
             return new InitialDataDto();
         }
 

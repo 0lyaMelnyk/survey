@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import { Teacher } from '../models/Teacher';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,12 +19,7 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Загороднюк С.П.',
-  'Слюсар Є.А.',
-  'Самощенко О.В',
-  'Баужа О.С',
-];
+
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
@@ -34,7 +30,12 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-export default function LectureDropdown() {
+interface ITeacherSelectProps{
+  selectedTeacherIds: Number[],
+  teacherOptions: Teacher[],
+  onSelect: Function
+}
+export default function LectureDropdown(props: ITeacherSelectProps) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -46,6 +47,9 @@ export default function LectureDropdown() {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    let index = props.teacherOptions.findIndex(x=>x.teacherName==value);
+    props.onSelect({index, value});
+    console.log(value);
   };
 
   return (
@@ -67,13 +71,13 @@ export default function LectureDropdown() {
           )}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {props.teacherOptions.map((item) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={item.teacherId}
+              value={item.teacherName}
+              style={getStyles(item.teacherName, personName, theme)}
             >
-              {name}
+              {item.teacherName}
             </MenuItem>
           ))}
         </Select>
