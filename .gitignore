@@ -353,4 +353,3 @@ MigrationBackup/
 *.png
 *.txt
 *.lock
-*.csproj
