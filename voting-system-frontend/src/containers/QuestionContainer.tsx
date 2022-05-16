@@ -1,5 +1,8 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { display } from '@mui/system';
 import React, { useState } from 'react';
+import { Component } from 'react';
+import { render } from 'react-dom';
 import IQuestionFormProps from '../models/IQuestionFormProps';
 import IQuestionProps from '../models/IQuestionProps';
 import { Question } from '../models/Question';
@@ -23,7 +26,8 @@ export const QuestionsForm = (props: IQuestionFormProps): JSX.Element => {
     }
 console.log(answers);
     return (
-        <div>
+        <div style={{border:"solid"}}>
+            <div style={{display: "flex", padding:"2%", justifyContent:"center"}}>Форма оцінювання лектора Євген Андрійович Слюсар</div>
             {
                 props.questions.map(item => <QuestionItem 
                     key={item.questionId.toString()}
@@ -41,10 +45,11 @@ export default QuestionsForm;
 
 const QuestionItem = (props: IQuestionProps): JSX.Element => {
     return (
-        <div className='question-item'>
-            <div>
+        <div className='question-item' style={{border:"solid", margin:"2px", padding:"5px"}}>
+            <div style={{fontSize:"larger", padding:"5px"}}>
             {props.question.questionTitle}
             </div>
+            <div className='answerOptions' style={{display: "flex", border:"solid"}}>
             {props.answers.map(item => 
                 <div key={item.answerId}>
                     <Radio 
@@ -54,6 +59,7 @@ const QuestionItem = (props: IQuestionProps): JSX.Element => {
                         {item.answerTitle}
                 </div>
             )}
+            </div>
         </div>
     )
 }
