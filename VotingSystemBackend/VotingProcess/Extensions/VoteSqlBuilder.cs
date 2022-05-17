@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VotingProcess.Models;
 
 namespace VotingProcess.Extensions
 {
-    internal class VoteSqlBuilder
+    public class VoteSqlBuilder
     {
+        public string InsertVote(VoteDto vote)
+        {
+			return @$"INSERT INTO Vote(VoteId, VoterId, FacultyTeacherId, SubjectTeacherId, QuestionMarkId, VoteDate)
+						    VALUES({vote.VoteId}, {vote.VoterId}, {vote.FacultyTeacherId}, {vote.SubjectTeacherId}, {vote.QuestionMarkId}, '05-05-2022')";
+
+		}
     }
 }

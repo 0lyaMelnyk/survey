@@ -1,4 +1,4 @@
-﻿using VotingSystemBackend.Models;
+﻿//using VotingSystemBackend.Models;
 
 namespace VotingProcess.Queries
 {
@@ -7,7 +7,7 @@ namespace VotingProcess.Queries
         public InitializeDataQuery(string faculty)
         {
             //var facultyId = gl
-            var result = new InitialDataDto();
+            //var result = new InitialDataDto();
         }
     }
 }
