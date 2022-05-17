@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using VotingSystemBackend;
 using VotingSystemBackend.RequestHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,3 +29,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//new VotesController().PostNewVote(string.Empty);
