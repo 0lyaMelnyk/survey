@@ -13,7 +13,7 @@ interface ISubjectSelectProps{
 }
 export function SubjectSelect (props: ISubjectSelectProps): JSX.Element{
  
-  const [subjectId, setSubjectId] = React.useState(props.selectedSubjectId);
+  const [subjectId, setSubjectId] = React.useState(0);
 
   const handleChange = (event: SelectChangeEvent) => {
     console.log(event.target.value);

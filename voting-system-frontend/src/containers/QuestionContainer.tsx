@@ -1,8 +1,5 @@
-import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { display } from '@mui/system';
+import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import React, { useState } from 'react';
-import { Component } from 'react';
-import { render } from 'react-dom';
 import IQuestionFormProps from '../models/IQuestionFormProps';
 import IQuestionProps from '../models/IQuestionProps';
 import { Question } from '../models/Question';
@@ -24,12 +21,21 @@ export const QuestionsForm = (props: IQuestionFormProps): JSX.Element => {
             }
         }
     }
-console.log(answers);
+    const onClick=():void=>{
+        console.log(answers);
+        if(answers.length == props.form.questions.length){
+            props.onSubmit();
+        }
+        else{
+            alert("Будь ласка дайте відповідь на всі питання");
+        }
+    }
+console.log(props.form);
     return (
         <div style={{border:"solid"}}>
-            <div style={{display: "flex", padding:"2%", justifyContent:"center"}}>Форма оцінювання лектора Євген Андрійович Слюсар</div>
+            <div style={{display: "flex", padding:"2%", justifyContent:"center"}}>{props.form.title}</div>
             {
-                props.questions.map(item => <QuestionItem 
+                props.form.questions.map(item => <QuestionItem 
                     key={item.questionId.toString()}
                     questionAnswerId={answers.find((x:Question) => x.questionId == item.questionId)?.answerId}
                     question={item}
@@ -37,6 +43,7 @@ console.log(answers);
                     onAnswerChange={setAnswer}
                 />)
             }
+        <Button onClick={onClick}>Далі</Button>
         </div>
     );
 };

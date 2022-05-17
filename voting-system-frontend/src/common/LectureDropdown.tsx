@@ -47,9 +47,9 @@ export default function LectureDropdown(props: ITeacherSelectProps) {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
-    let index = props.teacherOptions.findIndex(x=>x.teacherName==value);
-    props.onSelect({index, value});
-    console.log(value);
+    let teacher = props.teacherOptions.find(x=>x.teacherName==value);
+    props.onSelect(teacher?.teacherId);
+    console.log(teacher?.teacherId);
   };
 
   return (

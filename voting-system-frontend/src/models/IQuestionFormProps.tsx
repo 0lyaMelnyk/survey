@@ -1,6 +1,7 @@
+import { Form } from "./Form";
 import { Question } from "./Question";
 
 export default interface IQuestionFormProps {
-    questions: Question[],
+    form: Form,
     onSubmit: Function
 }
