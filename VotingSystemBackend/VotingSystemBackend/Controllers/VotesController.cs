@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.Repositories;
 
@@ -14,11 +14,10 @@ namespace VotingSystemBackend.Controllers
     {
         private readonly VotesRepository votesRepository = new VotesRepository();
 
-        // GET: api/<VotesController>
         [HttpGet]
-        public IEnumerable<string> GetAllVotesBy(object filter)
+        public string GetVotesByTeacher(int teacherID)
         {
-            return new string[] { "value1", "value2" };
+            return JsonConvert.SerializeObject(votesRepository.GetVotesByTeacher(teacherID));
         }
 
         // POST api/<VotesController>

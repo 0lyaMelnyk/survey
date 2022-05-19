@@ -27,6 +27,7 @@ namespace VotingSystemBackend.Repositories
             mapperConfiguration = new MapperConfiguration(configuration =>
             {
                 configuration.CreateMap<Vote, VoteDto>();
+                configuration.CreateMap<VoteDto, Vote>();
             });
         }
     }
