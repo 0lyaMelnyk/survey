@@ -9,6 +9,7 @@ import { Form } from './models/Form';
 import Answer from './models/Answer';
 import { Subject } from './models/Subject';
 import { Teacher } from './models/Teacher';
+import axios from 'axios';
 
 const subjects: Subject[] = [
     { subjectId: 1, subjectName: "Функціональне програмування" },
@@ -103,6 +104,16 @@ const VIEWS = {
     SUCCESS:"SUCCESS"
 }
 
+let clientAxios = axios.create({
+    baseURL: "https://localhost:44330/",
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+        'Content-Type': 'application/json , multipart/form-data',
+        withCredentials: true,
+    },})
+
 function App() {
 
   const [forms, setForms] = useState([]);
@@ -124,24 +135,15 @@ function App() {
 
   const generateForms = async (selection:any) => {
     const lecture = GetTeacherById(selection.lectureId);
-    formItems[0].teacherId = selection.lectureId;
-    formItems[0].title = "Форма оцінювання "+(await lecture).teacherName;
-    //GetFormByPracticalId(selection.practicalsId)
-    //GetFormBySubjectId()
     return formItems;
   }
 
   const GetTeacherById =  async (teacherId:Number)=>{
-      console.log("teacher id"+teacherId);
-    for (var i = 0; i < teachers.length; i++) {
-        if (teachers[i].teacherId==teacherId) {
-            return teachers[i];
-        }
-    }
-    return {
-        teacherId:0,
-        teacherName:"Not found"
-    };
+
+    clientAxios.get(`https://localhost:44330/api/form/${teacherId}` )
+    .then(res => {
+      console.log(res);
+    })
   }
   const processForms = async(forms:Form[]) => {
       console.log("count"+forms.length);
@@ -154,6 +156,9 @@ function App() {
 
   }
 
+  const onReset=async ()=>{
+
+  }
   const getView = () => {
       console.log(view);
       switch(view){
