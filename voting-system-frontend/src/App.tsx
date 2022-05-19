@@ -144,6 +144,7 @@ function App() {
     };
   }
   const processForms = async(forms:Form[]) => {
+      console.log("count"+forms.length);
     setView(VIEWS.LOADING);
     const result = await applyAnswers(forms);//request to backend
     setView(VIEWS.SUCCESS);
