@@ -1,3 +1,4 @@
+import Answer from "./Answer";
 import { Question } from "./Question";
 
 export interface Form{
@@ -6,5 +7,6 @@ export interface Form{
     type: Number,
     teacherId: Number,
     subjectId: Number,
-    questions: Question[]
+    questions: Question[],
+    answers: Answer[]
 }

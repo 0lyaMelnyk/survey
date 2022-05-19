@@ -1,5 +1,7 @@
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { Form } from '../models/Form';
 import IQuestionFormProps from '../models/IQuestionFormProps';
 import IQuestionProps from '../models/IQuestionProps';
 import { Question } from '../models/Question';
@@ -22,15 +24,20 @@ export const QuestionsForm = (props: IQuestionFormProps): JSX.Element => {
         }
     }
     const onClick=():void=>{
-        console.log(answers);
+                    props.onSubmit(answers);
+
         if(answers.length == props.form.questions.length){
-            props.onSubmit();
+            //props.onSubmit(answers);
         }
         else{
-            alert("Будь ласка дайте відповідь на всі питання");
+            //alert("Будь ласка дайте відповідь на всі питання");
         }
     }
-console.log(props.form);
+    console.log(answers);
+
+    useEffect(()=>{
+        setAnswers([]);
+    },[props.form]);
     return (
         <div style={{border:"solid"}}>
             <div style={{display: "flex", padding:"2%", justifyContent:"center"}}>{props.form.title}</div>

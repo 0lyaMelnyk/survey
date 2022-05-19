@@ -72,7 +72,8 @@ const questionItemsPractical:Question[] = [
         type: 1,
         teacherId: 1,
         subjectId: 1,
-        questions: questionItemsLecture
+        questions: questionItemsLecture,
+        answers: []
     },
     {
         formId: 2,
@@ -80,7 +81,8 @@ const questionItemsPractical:Question[] = [
         type: 2,
         teacherId: 2,
         subjectId: 1,
-        questions: questionItemsPractical
+        questions: questionItemsPractical,
+        answers:[]
     },
     {
         formId: 3,
@@ -88,7 +90,8 @@ const questionItemsPractical:Question[] = [
         type: 3,
         teacherId: 0,
         subjectId: 1,
-        questions: questionItemsSubject
+        questions: questionItemsSubject,
+        answers:[]
     },
 ]
 
