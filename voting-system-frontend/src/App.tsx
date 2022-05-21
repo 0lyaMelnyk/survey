@@ -11,14 +11,14 @@ import { Subject } from './models/Subject';
 import { Teacher } from './models/Teacher';
 import axios from 'axios';
 
-const subjects: Subject[] = [
+let subjects: Subject[] = [
     { subjectId: 1, subjectName: "Функціональне програмування" },
     { subjectId: 2, subjectName: "Цифрова обробка сигналів" },
     { subjectId: 3, subjectName: "Системи автоматизації підприємств" },
     { subjectId: 4, subjectName: "Периферійні пристрої" },
   ];
   
-  const teachers: Teacher[] = [
+  let teachers: Teacher[] = [
     { teacherId: 1, teacherName: "Загороднюк С.П." },
     { teacherId: 2, teacherName: "Слюсар Є.А." },
     { teacherId: 3, teacherName: "Самощенко О.В" },
@@ -138,9 +138,10 @@ function App() {
     return formItems;
   }
 
+  let path:string = "https://localhost:44330/api/";
   const GetTeacherById =  async (teacherId:Number)=>{
 
-    clientAxios.get(`https://localhost:44330/api/form/${teacherId}` )
+    clientAxios.get(path+`form/${teacherId}` )
     .then(res => {
       console.log(res);
     })
@@ -149,18 +150,41 @@ function App() {
       console.log("count"+forms.length);
     setView(VIEWS.LOADING);
     const result = await applyAnswers(forms);//request to backend
+    
     setView(VIEWS.SUCCESS);
   }
 
   const applyAnswers = async (forms: any) => {
-
+    clientAxios.post(path+`votes`, forms )
+    .then(res => {
+      console.log(res);
+    })
   }
 
   const onReset=async ()=>{
 
   }
+
+  const getTeachersByFacultyId = async (facultyId:number): Promise<Teacher[]>=>{
+    clientAxios.get(path+`teacher/${facultyId}` )
+    .then(res => {
+      console.log(res);
+      teachers =  res.data;
+    })
+    return teachers;
+  }
+  const getSubjectsByFacultyID = async(facultyId:number):Promise<Subject[]>=>{
+    clientAxios.get(path+`subject/${facultyId}` )
+    .then(res => {
+      console.log(res);
+      subjects =  res.data;
+    })
+    return subjects;
+  }
   const getView = () => {
       console.log(view);
+      getSubjectsByFacultyID(5);
+      getTeachersByFacultyId(5);
       switch(view){
             case VIEWS.SELECTION:
                 return <CommonContainer teachers={teachers} subjects={subjects} onSubmit={processSelection}/>

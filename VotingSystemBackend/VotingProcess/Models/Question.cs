@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VotingProcess.Models
 {
-    internal class Question
+    public class Question
     {
     }
 }

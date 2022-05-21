@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.Repositories;
 
@@ -22,17 +23,23 @@ namespace VotingSystemBackend.Controllers
 
         // POST api/<VotesController>
         [HttpPost]
-        public void PostNewVote([FromBody] string value)
+        public void PostNewVote([FromBody] List<FormDto> value)
         {
-            votesRepository.SaveVote(new Vote
+            foreach (var form in value)
             {
-                VoteId = 1,
-                VoterId = 1,
-                FacultyTeacherId = 1,
-                SubjectTeacherId = 1,
-                QuestionMarkId = 1,
-                VoteDate = new DateTime(2022, 12, 1)
-            });
+                foreach (var quest in form.Questions)
+                {
+                    votesRepository.SaveVote(new Vote
+                    {
+                        VoteId = 1,
+                        VoterId = 1,
+                        FacultyTeacherId = 1,
+                        SubjectTeacherId = 1,
+                        QuestionMarkId = 1,
+                        VoteDate = new DateTime(2022, 12, 1)
+                    });
+                }
+            }
         }
     }
 }
