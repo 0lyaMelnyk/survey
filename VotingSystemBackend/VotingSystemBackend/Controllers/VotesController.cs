@@ -17,7 +17,7 @@ namespace VotingSystemBackend.Controllers
         [HttpGet]
         public string GetVotesByTeacher(int id)
         {
-            return JsonConvert.SerializeObject(votesRepository.GetVotesByTeacher(id));
+            return JsonConvert.SerializeObject(votesRepository.GetModelsByEntityID(id));
         }
 
         // POST api/<VotesController>

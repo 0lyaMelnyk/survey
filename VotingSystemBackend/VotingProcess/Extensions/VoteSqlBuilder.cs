@@ -7,8 +7,8 @@ namespace VotingProcess.Extensions
         public override string SelectModelsByEntityID(int entityID)
         {
             return @$"SELECT * FROM Vote vote 
-                      INNER JOIN FacultyTeacher facultyTeacher ON vote.FacultyTeacherID = facultyTeacher.FacultyTeacherID
-                      INNER JOIN Teacher teacher ON facultyTeacher.TeacherID = teacher.TeacherID WHERE teacher.TeacherID = {entityID}";
+                      LEFT JOIN FacultyTeacher facultyTeacher ON vote.FacultyTeacherID = facultyTeacher.FacultyTeacherID
+                      LEFT JOIN Teacher teacher ON facultyTeacher.TeacherID = teacher.TeacherID WHERE teacher.TeacherID = {entityID}";
 
         }
 

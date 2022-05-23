@@ -12,6 +12,7 @@ namespace VotingSystemBackend.Repositories
     {
         private MapperConfiguration mapperConfiguration;
         protected string connectionString = @"Data Source=5CD9056Z9W\SQLEXPRESS;Initial Catalog=VotingSystemDB;Trusted_Connection=True";
+        protected BasicSqlBuilder sqlBuilder;
 
         protected BaseRepository()
         {
@@ -33,10 +34,11 @@ namespace VotingSystemBackend.Repositories
                 configuration.CreateMap<Vote, VoteDto>();
                 configuration.CreateMap<VoteDto, Vote>();
                 configuration.CreateMap<SubjectDto, Subject>();
+                configuration.CreateMap<TeacherDto, Teacher>();
             });
         }
 
-        public virtual List<TModel> GetModelsByEntityID(BasicSqlBuilder sqlBuilder, int entityID)
+        public virtual List<TModel> GetModelsByEntityID(int entityID)
         {
             IEnumerable<TEntity> entities;
             var models = new List<TModel>();
