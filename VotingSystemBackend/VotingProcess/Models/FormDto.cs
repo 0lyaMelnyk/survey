@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using VotingProcess.Models;
-
-namespace VotingSystemBackend.Models
+﻿namespace VotingProcess.Models
 {
     public class FormDto
     {
-        public int Id { get; set; }
+        public int FormId { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
         public int TeacherId { get; set; }
         public int SubjectId { get; set; }
-        public List<Question> Questions { get; set; }
+        public List<QuestionDto> Questions { get; set; }
     }
 }

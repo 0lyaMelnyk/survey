@@ -22,7 +22,7 @@ namespace VotingSystemBackend.Controllers
 
         // POST api/<VotesController>
         [HttpPost]
-        public void PostNewVote([FromBody] List<FormDto> value)
+        public void PostNewVote([FromBody] List<Form> value)
         {
             foreach (var form in value)
             {

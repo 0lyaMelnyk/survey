@@ -35,6 +35,7 @@ namespace VotingSystemBackend.Repositories
                 configuration.CreateMap<VoteDto, Vote>();
                 configuration.CreateMap<SubjectDto, Subject>();
                 configuration.CreateMap<TeacherDto, Teacher>();
+                configuration.CreateMap<QuestionDto, Question>();
             });
         }
 
