@@ -1,6 +1,6 @@
-﻿namespace VotingSystemBackend.Models
+﻿namespace VotingProcess.Models
 {
-    public class SubjectDto
+    internal class Subject
     {
         public int SubjectId { get; set; }
         public string SubjectName { get; set; }

@@ -2,10 +2,9 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using VotingProcess.Models;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.Repositories;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace VotingSystemBackend.Controllers
 {
@@ -13,7 +12,7 @@ namespace VotingSystemBackend.Controllers
     [ApiController]
     public class VotesController : ControllerBase
     {
-        private readonly VotesRepository votesRepository = new VotesRepository();
+        private readonly VotesRepository<VoteDto, Vote> votesRepository = new VotesRepository<VoteDto, Vote>();
 
         [HttpGet]
         public string GetVotesByTeacher(int id)

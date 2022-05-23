@@ -2,13 +2,13 @@
 
 namespace VotingProcess.Extensions
 {
-    public class VoteSqlBuilder
+    public class VoteSqlBuilder : BasicSqlBuilder
     {
-        public string SelectVotesByTeacherID(int teacherID)
+        public override string SelectModelsByEntityID(int entityID)
         {
             return @$"SELECT * FROM Vote vote 
                       INNER JOIN FacultyTeacher facultyTeacher ON vote.FacultyTeacherID = facultyTeacher.FacultyTeacherID
-                      INNER JOIN Teacher teacher ON facultyTeacher.TeacherID = teacher.TeacherID WHERE teacher.TeacherID = {teacherID}";
+                      INNER JOIN Teacher teacher ON facultyTeacher.TeacherID = teacher.TeacherID WHERE teacher.TeacherID = {entityID}";
 
         }
 

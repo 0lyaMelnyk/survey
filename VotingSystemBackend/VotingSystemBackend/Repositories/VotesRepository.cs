@@ -7,18 +7,13 @@ using VotingSystemBackend.Models;
 
 namespace VotingSystemBackend.Repositories
 {
-    internal class VotesRepository : BaseRepository
+    internal class VotesRepository<TEntity, TModel> : BaseRepository<TEntity, TModel> where TEntity : VoteDto where TModel : Vote
     {
-        public List<Vote> GetVotesByTeacher(int teacherID)
+        private readonly VoteSqlBuilder votesSqlBuilder = new VoteSqlBuilder();
+
+        public List<TModel> GetVotesByTeacher(int teacherID)
         {
-            IEnumerable<VoteDto> votesByTeacherID;
-            var votesByTeacher = new List<Vote>();
-            using (var connection = new SqlConnection(connectionString))
-            {
-                votesByTeacherID = connection.Query<VoteDto>(new VoteSqlBuilder().SelectVotesByTeacherID(teacherID));
-            }
-            (votesByTeacherID as List<VoteDto>).ForEach(voteDto => votesByTeacher.Add(GetMapper.Map<Vote>(voteDto)));
-            return votesByTeacher;
+            return base.GetModelsByEntityID(votesSqlBuilder, teacherID);
         }
 
         public void SaveVote(Vote vote)
