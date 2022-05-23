@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Newtonsoft.Json;
+using VotingProcess.Models;
+using VotingSystemBackend.Models;
+using VotingSystemBackend.Repositories;
 
 namespace VotingSystemBackend.Controllers
 {
@@ -8,14 +10,13 @@ namespace VotingSystemBackend.Controllers
     [ApiController]
     public class TeacherController : ControllerBase
     {
+        private readonly TeacherRepository<TeacherDto, Teacher> teacherRepository = new TeacherRepository<TeacherDto, Teacher>();
+
         // GET api/<TeacherController>/5
         [HttpGet("{id}")]
-        public string GetTeacherByFacultyId(int facultyId)
+        public string GetTeacherByFacultyId(int id)
         {
-            return "[{ teacherId: 1, teacherName: \"Загороднюк С.П.\" }," +
-                "{ teacherId: 2, teacherName: \"Слюсар Є.А.\" }," +
-                "{ teacherId: 3, teacherName: \"Самощенко О.В\" }," +
-                "{ teacherId: 4, teacherName: \"Баужа О.С\" },]";
+            return JsonConvert.SerializeObject(teacherRepository.GetTeachersByFaculty(id));
         }
     }
 }

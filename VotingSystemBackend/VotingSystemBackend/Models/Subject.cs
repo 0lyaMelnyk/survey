@@ -1,4 +1,4 @@
-﻿namespace VotingProcess.Models
+﻿namespace VotingSystemBackend.Models
 {
     internal class Subject
     {

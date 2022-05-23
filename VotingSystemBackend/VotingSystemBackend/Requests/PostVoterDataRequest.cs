@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using VotingSystemBackend.Models;
+using VotingProcess.Models;
 
 namespace VotingSystemBackend.Requests
 {

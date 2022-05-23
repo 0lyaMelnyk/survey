@@ -1,6 +1,6 @@
 ﻿namespace VotingSystemBackend.Models
 {
-    public class TeacherDto
+    internal class Teacher
     {
         public int TeacherId { get; set; }
         public string TeacherName { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace VotingSystemBackend.Models
+﻿namespace VotingProcess.Models
 {
     public class SubjectDto
     {
