@@ -11,7 +11,7 @@ namespace VotingSystemBackend.Repositories
     internal abstract class BaseRepository<TEntity, TModel>
     {
         private MapperConfiguration mapperConfiguration;
-        protected string connectionString = @"Data Source=5CD9056Z9W\SQLEXPRESS;Initial Catalog=VotingSystemDB;Trusted_Connection=True";
+        protected string connectionString = @"Data Source=5CD04958TF\SQLEXPRESS;Initial Catalog=VotingSystemDB;Trusted_Connection=True";
         protected BasicSqlBuilder sqlBuilder;
 
         protected BaseRepository()

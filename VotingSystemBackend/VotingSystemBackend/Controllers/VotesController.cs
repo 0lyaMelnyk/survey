@@ -22,21 +22,21 @@ namespace VotingSystemBackend.Controllers
 
         // POST api/<VotesController>
         [HttpPost]
-        public void PostNewVote([FromBody] List<Form> value)
+        public void PostNewVote([FromBody] List<SaveForm> value)
         {
             foreach (var form in value)
             {
-                foreach (var quest in form.Questions)
+                var vote = new Vote();
+                vote.SubjectId = form.SubjectId;
+                vote.VoteDate = DateTime.Now;
+                vote.TeacherId = form.TeacherId;
+                vote.FacultyId = 1;
+                vote.VoterId = 1;
+                foreach (var quest in form.Answers)
                 {
-                    votesRepository.SaveVote(new Vote
-                    {
-                        VoteId = 1,
-                        VoterId = 1,
-                        FacultyTeacherId = 1,
-                        SubjectTeacherId = 1,
-                        QuestionMarkId = 1,
-                        VoteDate = new DateTime(2022, 12, 1)
-                    });
+                    vote.AnswerId = quest.AnswerId;
+                    vote.QuestionId = quest.QuestionId;
+                    votesRepository.SaveVote(vote);
                 }
             }
         }

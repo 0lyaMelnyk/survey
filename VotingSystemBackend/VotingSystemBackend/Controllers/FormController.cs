@@ -12,13 +12,7 @@ namespace VotingSystemBackend.Controllers
     {
         private readonly FormRepository<FormDto, Form> formRepository = new FormRepository<FormDto, Form>();
 
-        // GET api/Form/5
         [HttpGet("{id}")]
-        public string GetSubjectsByFacultyId(int id)
-        {
-            return JsonConvert.SerializeObject(formRepository.GetModelsByEntityID(id));
-        }
-
         public string GetFormByTeacherId(int id)
         {
             return JsonConvert.SerializeObject(formRepository.GetFormsByTeacherID(new System.Tuple<int, int>(id, 2)));

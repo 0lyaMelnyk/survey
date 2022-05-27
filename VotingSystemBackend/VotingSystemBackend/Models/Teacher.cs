@@ -2,7 +2,7 @@
 {
     internal class Teacher
     {
-        public int TeacherId { get; set; }
-        public string TeacherName { get; set; }
+        public int teacherId { get; set; }
+        public string teacherName { get; set; }
     }
 }

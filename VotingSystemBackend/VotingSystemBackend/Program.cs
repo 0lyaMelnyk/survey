@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VotingSystemBackend.Controllers;
-using VotingSystemBackend.RequestHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,6 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<PostVoterDataRequestHandler>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -40,8 +38,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.Run();
-
-
-new FormController().GetFormByTeacherId(1);
-//new TeacherController().GetTeacherByFacultyId(1);
+app.Run();

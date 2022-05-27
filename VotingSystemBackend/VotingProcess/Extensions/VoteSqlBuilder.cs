@@ -14,8 +14,10 @@ namespace VotingProcess.Extensions
 
         public string InsertVote(VoteDto vote)
         {
-			return @$"INSERT INTO Vote(VoteId, VoterId, FacultyTeacherId, SubjectTeacherId, QuestionMarkId, VoteDate)
-						    VALUES({vote.VoteId}, {vote.VoterId}, {vote.FacultyTeacherId}, {vote.SubjectTeacherId}, {vote.QuestionMarkId}, '05-05-2022')";
+			var r  = @$"INSERT INTO Vote(VoterId,FacultyId,SubjectId,TeacherId,QuestionId,AnswerId,VoteDate)
+						    VALUES({vote.VoterId}, {vote.FacultyId}, {vote.SubjectId}, {vote.TeacherId},{vote.QuestionId}, {vote.AnswerId},'{vote.VoteDate.ToString("yyyy-MM-dd")}')";
+
+            return r;
 
 		}
     }

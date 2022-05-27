@@ -1,68 +1,43 @@
 --CREATE DATABASE VotingSystemDB;
---drop database VotingSystemDB 
+drop database VotingSystemDB 
 --use VotingSystemDB;
 CREATE TABLE Teacher(
 TeacherId int IDENTITY(1,1) PRIMARY KEY,
-TeacherName VARCHAR(max),
-FacultyTeacherId int,
-SubjectTeacherId int
+TeacherName NVARCHAR(max)
 );  
 
 CREATE TABLE Faculty(
 FacultyId int IDENTITY(1,1) PRIMARY KEY,
-FacultyName VARCHAR(max)
+FacultyName NVARCHAR(max)
 );
 
 CREATE TABLE Subject(
 SubjectId int IDENTITY(1,1) PRIMARY KEY,
-SubjectName VARCHAR(max),
+SubjectName NVARCHAR(max),
 Semester int,
-FacultyId int
-);
-
-CREATE TABLE FacultyTeacher(
-FacultyTeacherId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-FacultyId int NOT NULL,
-TeacherId int NOT NULL,
-FOREIGN KEY (TeacherId) REFERENCES Teacher (TeacherId),
+FacultyId int,
 FOREIGN KEY (FacultyId) REFERENCES Faculty (FacultyId)
 );
 
-CREATE TABLE SubjectTeacher(
-SubjectTeacherId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-SubjectId int NOT NULL,
-TeacherId int NOT NULL,
-FOREIGN KEY (TeacherId) REFERENCES Teacher (TeacherId),
-FOREIGN KEY (SubjectId) REFERENCES Subject (SubjectId)
-);
-
-CREATE TABLE Mark(
-MarkId int IDENTITY(1,1) PRIMARY KEY,
-MarkDescription VARCHAR(max)
+CREATE TABLE Answer(
+AnswerId int IDENTITY(1,1) PRIMARY KEY,
+AnswerDescription NVARCHAR(max)
 );
 
 CREATE TABLE GraduateLevel(
 LevelId int IDENTITY(1,1) PRIMARY KEY,
-LevelName VARCHAR(max)
+LevelName NVARCHAR(max)
 );
 
 CREATE TABLE Question(
 QuestionId int IDENTITY(1,1) PRIMARY KEY,
-QuestionDescription VARCHAR(max),
+QuestionDescription NVARCHAR(max),
 FormMode int
-);
-
-CREATE TABLE QuestionMark(
-QuestionMarkId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-QuestionId int NOT NULL,
-MarkId int NOT NULL,
-FOREIGN KEY (QuestionId) REFERENCES Question(QuestionId),
-FOREIGN KEY (MarkId) REFERENCES Mark(MarkId)
 );
 
 CREATE TABLE EducationalProgram(
 EducationalProgramId int IDENTITY(1,1) PRIMARY KEY,
-EducationalProgramName VARCHAR(max)
+EducationalProgramName NVARCHAR(max)
 );
 
 CREATE TABLE Voter(
@@ -78,12 +53,16 @@ FOREIGN KEY (EducationalProgramId) REFERENCES EducationalProgram(EducationalProg
 CREATE TABLE Vote(
 VoteId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 VoterId int NOT NULL,
-FacultyTeacherId int NOT NULL,
-SubjectTeacherId int NOT NULL,
-QuestionMarkId int NOT NULL,
+FacultyId int NOT NULL,
+SubjectId int NOT NULL,
+TeacherId int NOT NULL,
+QuestionId int NOT NULL,
+AnswerId int NOT NULL,
 VoteDate Date, 
 FOREIGN KEY (VoterId) REFERENCES Voter(VoterId),
-FOREIGN KEY (FacultyTeacherId) REFERENCES FacultyTeacher(FacultyTeacherId),
-FOREIGN KEY (SubjectTeacherId) REFERENCES SubjectTeacher(SubjectTeacherId),
-FOREIGN KEY (QuestionMarkId) REFERENCES QuestionMark(QuestionMarkId)
+FOREIGN KEY (FacultyId) REFERENCES Faculty(FacultyId),
+FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),
+FOREIGN KEY (AnswerId) REFERENCES Answer(AnswerId),
+FOREIGN KEY (TeacherId) REFERENCES Teacher(TeacherId),
+FOREIGN KEY (QuestionId) REFERENCES Question(QuestionId)
 );

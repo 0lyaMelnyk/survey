@@ -37,7 +37,7 @@ namespace VotingSystemBackend.Repositories
                 Type = questions.FirstOrDefault().FormMode,
                 TeacherId = t.TeacherId,
                 SubjectId = 0,
-                Questions = q
+                Questions = questions
             });
             return forms;
         }

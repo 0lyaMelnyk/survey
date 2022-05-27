@@ -4,7 +4,7 @@
     {
         public override string SelectModelsByEntityID(int entityID)
         {
-            return $"SELECT * FROM [Subject] WHERE Faculty IN (SELECT DISTINCT FacultyName FROM Faculty WHERE FacultyId = {entityID})";
+            return $"SELECT * FROM [Subject] WHERE FacultyId = {entityID}";
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommonContainer from './containers/CommonContainer';
 import { Question } from './models/Question';
 import {QuestionsForm} from './containers/QuestionContainer'
@@ -16,13 +16,6 @@ let subjects: Subject[] = [
     { subjectId: 2, subjectName: "Цифрова обробка сигналів" },
     { subjectId: 3, subjectName: "Системи автоматизації підприємств" },
     { subjectId: 4, subjectName: "Периферійні пристрої" },
-  ];
-  
-  let teachers: Teacher[] = [
-    { teacherId: 1, teacherName: "Загороднюк С.П." },
-    { teacherId: 2, teacherName: "Слюсар Є.А." },
-    { teacherId: 3, teacherName: "Самощенко О.В" },
-    { teacherId: 4, teacherName: "Баужа О.С" },
   ];
 const answersVariants:QuestionAnswer[]=[
     {answerId:1, answerTitle:"Повністю не погоджуюсь"},
@@ -119,6 +112,8 @@ function App() {
   const [forms, setForms] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [view, setView] = useState(VIEWS.SELECTION);
+  const [teachers, setTeachers] = useState([]);
+  useEffect(()=>{getTeachersByFacultyId(1)},[]);
 
   const processSelection = async (selection:any) => {
     //validate Id
@@ -134,16 +129,16 @@ function App() {
   }
 
   const generateForms = async (selection:any) => {
-    const lecture = GetTeacherById(selection.lectureId);
+    //GetTeacherFormById(selection.lectureId);
     return formItems;
   }
 
-  let path:string = "https://localhost:44330/api/";
-  const GetTeacherById =  async (teacherId:Number)=>{
-
+  let path:string = "https://localhost:44318/api/";
+  const GetTeacherFormById =  async (teacherId:Number)=>{
     clientAxios.get(path+`form/${teacherId}` )
-    .then(res => {
-      console.log(res);
+    .then((res: any) => {
+      formItems=res.data;
+      setForms(formItems);
     })
   }
   const processForms = async(forms:Form[]) => {
@@ -156,7 +151,7 @@ function App() {
 
   const applyAnswers = async (forms: any) => {
     clientAxios.post(path+`votes`, forms )
-    .then(res => {
+    .then((res: any) => {
       console.log(res);
     })
   }
@@ -167,26 +162,27 @@ function App() {
 
   const getTeachersByFacultyId = async (facultyId:number): Promise<Teacher[]>=>{
     clientAxios.get(path+`teacher/${facultyId}` )
-    .then(res => {
-      console.log(res);
-      teachers =  res.data;
+    .then((res: { data: Teacher[]; }) => {
+      const teacherList = res.data;
+      console.log(teacherList);
+      setTeachers(teacherList);
     })
     return teachers;
   }
   const getSubjectsByFacultyID = async(facultyId:number):Promise<Subject[]>=>{
     clientAxios.get(path+`subject/${facultyId}` )
-    .then(res => {
-      console.log(res);
+    .then((res: { data: Subject[]; }) => {
       subjects =  res.data;
     })
     return subjects;
   }
   const getView = () => {
       console.log(view);
-      getSubjectsByFacultyID(5);
-      getTeachersByFacultyId(5);
+      //getSubjectsByFacultyID(1);
+      //getTeachersByFacultyId(1);
       switch(view){
             case VIEWS.SELECTION:
+                //getTeachersByFacultyId(1);
                 return <CommonContainer teachers={teachers} subjects={subjects} onSubmit={processSelection}/>
             case VIEWS.FORMS:
                 return <FormsContainer forms={forms} onSubmit={processForms}/>
