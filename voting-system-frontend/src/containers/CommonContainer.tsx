@@ -31,7 +31,7 @@ export default function CommonContainer(props: ICommonProps): JSX.Element {
       lectureId: selectedLectureId,
       practicalIds: selectedPracticalIds,
     };
-    console.log("selectedItems"+selection)
+    console.log("selectedItems" + selection);
     props.onSubmit(selection);
   };
 

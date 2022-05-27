@@ -1,4 +1,4 @@
 export interface QuestionAnswer {
-    answerId: number,
-    answerTitle: string
+  answerId: number;
+  answerTitle: string;
 }

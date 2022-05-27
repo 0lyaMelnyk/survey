@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
-import { Teacher } from '../models/Teacher';
+import * as React from "react";
+import { Theme, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Chip from "@mui/material/Chip";
+import { Teacher } from "../models/Teacher";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,8 +19,6 @@ const MenuProps = {
   },
 };
 
-
-
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
@@ -30,10 +28,10 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-interface ITeacherSelectProps{
-  selectedTeacherIds: Number[],
-  teacherOptions: Teacher[],
-  onSelect: Function
+interface ITeacherSelectProps {
+  selectedTeacherIds: Number[];
+  teacherOptions: Teacher[];
+  onSelect: Function;
 }
 export default function LectureDropdown(props: ITeacherSelectProps) {
   const theme = useTheme();
@@ -45,9 +43,9 @@ export default function LectureDropdown(props: ITeacherSelectProps) {
     } = event;
     setPersonName(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      typeof value === "string" ? value.split(",") : value
     );
-    let teacher = props.teacherOptions.find(x=>x.teacherName==value);
+    let teacher = props.teacherOptions.find((x) => x.teacherName == value);
     props.onSelect(teacher?.teacherId);
     console.log(teacher?.teacherId);
   };
@@ -63,8 +61,8 @@ export default function LectureDropdown(props: ITeacherSelectProps) {
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value:any) => (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              {selected.map((value: any) => (
                 <Chip key={value} label={value} />
               ))}
             </Box>

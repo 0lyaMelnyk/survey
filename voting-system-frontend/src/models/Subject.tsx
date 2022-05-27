@@ -1,4 +1,4 @@
-export interface Subject{
-    subjectName: string,
-    subjectId: number
-  }
+export interface Subject {
+  subjectName: string;
+  subjectId: number;
+}
