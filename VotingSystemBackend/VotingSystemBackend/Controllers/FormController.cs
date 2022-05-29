@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 using VotingProcess.Models;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.Repositories;
@@ -13,18 +14,16 @@ namespace VotingSystemBackend.Controllers
         private readonly FormRepository<FormDto, Form> formRepository = new FormRepository<FormDto, Form>();
 
         [HttpGet("{id}")]
-        public string GetFormByTeacherId(int id)
+        public async Task<IActionResult> GetFormByTeacherId(int id, int formType)
         {
-            return JsonConvert.SerializeObject(formRepository.GetFormsByTeacherID(new System.Tuple<int, int>(id, 2)));
-
-
-            //return "{formId: 3," +
-            //    "title: \"Форма оцінювання Слюсар (викладач)"
-            //    "type: 3," +
-            //    "teacherId: 0," +
-            //    " subjectId: 1," +
-            //    " questions: questionItemsSubject," +
-            //    " answers:[] }";
+            try
+            {
+               return new JsonResult(await formRepository.GetFormsByTeacherID(new Tuple<int, int>(id, formType)));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

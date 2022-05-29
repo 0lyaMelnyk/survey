@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using VotingProcess.Extensions;
 using VotingProcess.Models;
 using VotingSystemBackend.Models;
@@ -16,20 +17,20 @@ namespace VotingSystemBackend.Repositories
             sqlBuilder = new FormSqlBuilder();
         }
 
-        public List<Form> GetFormsByTeacherID(Tuple<int, int> parameters)
+        public async Task<List<Form>> GetFormsByTeacherID(Tuple<int, int> parameters)
         {
-            List<QuestionDto> questions;
+            IEnumerable<QuestionDto> questions;
             var q = new List<Question>();
             var t = new TeacherDto();
             var teacherSqlScript = (sqlBuilder as FormSqlBuilder).SelectTeacherByTeacherID(parameters.Item1);
             var questionsSqlScript = (sqlBuilder as FormSqlBuilder).SelectQuestionsByFormMode(parameters.Item2);
             using (var connection = new SqlConnection(connectionString))
             {
-                questions = connection.Query<QuestionDto>(questionsSqlScript).AsList();
-                t = connection.QueryFirstOrDefault<TeacherDto>(teacherSqlScript);
+                questions = await connection.QueryAsync<QuestionDto>(questionsSqlScript);
+                t = await connection.QueryFirstOrDefaultAsync<TeacherDto>(teacherSqlScript);
             }
             var forms = new List<Form>();
-            questions.ForEach(dto => q.Add(GetMapper.Map<Question>(dto)));
+            questions.ToList().ForEach(dto => q.Add(GetMapper.Map<Question>(dto)));
             forms.Add(new Form
             {
                 FormId = 3,
@@ -37,7 +38,7 @@ namespace VotingSystemBackend.Repositories
                 Type = questions.FirstOrDefault().FormMode,
                 TeacherId = t.TeacherId,
                 SubjectId = 0,
-                Questions = questions
+                Questions = questions.ToList()
             });
             return forms;
         }

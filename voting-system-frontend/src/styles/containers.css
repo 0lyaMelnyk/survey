@@ -1,0 +1,11 @@
+.wrapper{
+    padding: 10px;
+}
+
+.answerOptions{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+

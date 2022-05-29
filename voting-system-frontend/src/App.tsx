@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import CommonContainer from "./containers/CommonContainer";
 import { Question } from "./models/Question";
-import { QuestionsForm } from "./containers/QuestionContainer";
 import { QuestionAnswer } from "./models/QuestionAnswer";
-import SelectedItems from "./models/SelectedItems";
 import { FormsContainer } from "./containers/FormsContainer";
 import { Form } from "./models/Form";
 import Answer from "./models/Answer";
 import { Subject } from "./models/Subject";
 import { Teacher } from "./models/Teacher";
 import axios from "axios";
+import "./styles/App.css"
 
 let subjects: Subject[] = [
   { subjectId: 1, subjectName: "Функціональне програмування" },
@@ -276,8 +275,8 @@ function App() {
   let path: string = "https://localhost:44318/api/";
   const GetTeacherFormById = async (teacherId: Number) => {
     clientAxios.get(path + `form/${teacherId}`).then((res: any) => {
-      formItems = res.data;
-      setForms(formItems);
+      const formItems = res.data;
+        setForms(formItems);
     });
   };
   const processForms = async (forms: Form[]) => {
@@ -303,7 +302,6 @@ function App() {
       .get(path + `teacher/${facultyId}`)
       .then((res: { data: Teacher[] }) => {
         const teacherList = res.data;
-        console.log(teacherList);
         setTeachers(teacherList);
       });
     return teachers;
@@ -319,12 +317,8 @@ function App() {
     return subjects;
   };
   const getView = () => {
-    console.log(view);
-    //getSubjectsByFacultyID(1);
-    //getTeachersByFacultyId(1);
     switch (view) {
       case VIEWS.SELECTION:
-        //getTeachersByFacultyId(1);
         return (
           <CommonContainer
             teachers={teachers}
@@ -339,11 +333,11 @@ function App() {
       case VIEWS.ERROR:
         return <div>Error...</div>;
       case VIEWS.SUCCESS:
-        return <div>Congrats</div>;
+        return <div>Дякуємо за участь! Саме Ваша думка дуже важлива для нас</div>;
     }
   };
 
-  return <div>{getView()}</div>;
+  return <div className="app">{getView()}</div>;
 }
 
 export default App;

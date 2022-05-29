@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import IQuestionFormProps from "../models/IQuestionFormProps";
 import IQuestionProps from "../models/IQuestionProps";
 import { Question } from "../models/Question";
+import "../styles/containers.css";
 
 export const QuestionsForm = (props: IQuestionFormProps): JSX.Element => {
   const [answers, setAnswers] = useState([]);
@@ -35,8 +36,8 @@ export const QuestionsForm = (props: IQuestionFormProps): JSX.Element => {
     setAnswers([]);
   }, [props.form]);
   return (
-    <div style={{ border: "solid" }}>
-      <div style={{ display: "flex", padding: "2%", justifyContent: "center" }}>
+    <div className="wrapper">
+      <div>
         {props.form.title}
       </div>
       {props.form.questions.map((item) => (
@@ -62,14 +63,12 @@ const QuestionItem = (props: IQuestionProps): JSX.Element => {
   return (
     <div
       className="question-item"
-      style={{ border: "solid", margin: "2px", padding: "5px" }}
     >
       <div style={{ fontSize: "larger", padding: "5px" }}>
         {props.question.questionTitle}
       </div>
       <div
         className="answerOptions"
-        style={{ display: "flex", border: "solid" }}
       >
         {props.answers.map((item) => (
           <div key={item.answerId}>

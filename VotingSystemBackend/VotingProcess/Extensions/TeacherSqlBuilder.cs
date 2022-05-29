@@ -4,7 +4,7 @@
     {
         public override string SelectModelsByEntityID(int entityID)
         {
-            return @$"SELECT * FROM Teacher teacher where teacherId = {entityID}";
+            return @$"SELECT * FROM Teacher teacher";
         }
     }
 }

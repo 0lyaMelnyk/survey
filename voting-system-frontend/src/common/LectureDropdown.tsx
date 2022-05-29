@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import { Teacher } from "../models/Teacher";
+import { InputLabel } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -53,13 +54,14 @@ export default function LectureDropdown(props: ITeacherSelectProps) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
+      <InputLabel id="demo-multiple-name-label">ПІБ викладача</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+          input={<OutlinedInput id="select-multiple-chip" label="ПІБ семінариста" />}
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
               {selected.map((value: any) => (
