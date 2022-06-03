@@ -2,6 +2,7 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using VotingProcess.Extensions;
 using VotingProcess.Models;
 using VotingSystemBackend.Models;
@@ -39,13 +40,13 @@ namespace VotingSystemBackend.Repositories
             });
         }
 
-        public virtual List<TModel> GetModelsByEntityID(int entityID)
+        public async virtual Task<List<TModel>> GetModelsByEntityID(int entityID)
         {
             IEnumerable<TEntity> entities;
             var models = new List<TModel>();
             using (var connection = new SqlConnection(connectionString))
             {
-                entities = connection.Query<TEntity>(sqlBuilder.SelectModelsByEntityID(entityID));
+                entities = await connection.QueryAsync<TEntity>(sqlBuilder.SelectModelsByEntityID(entityID));
             }
             (entities as List<TEntity>).ForEach(dto => models.Add(GetMapper.Map<TModel>(dto)));
             return models;

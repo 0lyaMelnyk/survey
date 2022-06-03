@@ -13,7 +13,7 @@ namespace VotingSystemBackend.Controllers
     {
         private readonly FormRepository<FormDto, Form> formRepository = new FormRepository<FormDto, Form>();
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}/{formType}")]
         public async Task<IActionResult> GetFormByTeacherId(int id, int formType)
         {
             try

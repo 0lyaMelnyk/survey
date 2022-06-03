@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 using VotingProcess.Models;
 using VotingSystemBackend.Models;
 using VotingSystemBackend.Repositories;
@@ -14,9 +16,23 @@ namespace VotingSystemBackend.Controllers
 
         // GET api/<SubjectController>/5
         [HttpGet("{id}")]
-        public string GetSubjectsByFacultyId(int id)
+        public async Task<IActionResult> GetSubjectsByFacultyId(int id)
         {
-            return JsonConvert.SerializeObject(subjectRepository.GetModelsByEntityID(id));
+            try
+            {
+                var result = await subjectRepository.GetModelsByEntityID(id);
+
+                if (result.Count == 0)
+                {
+                    return NotFound();
+                }
+
+                return new JsonResult(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

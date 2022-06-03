@@ -11,10 +11,10 @@ import axios from "axios";
 import "./styles/App.css"
 
 let subjects: Subject[] = [
-  { subjectId: 1, subjectName: "Функціональне програмування" },
-  { subjectId: 2, subjectName: "Цифрова обробка сигналів" },
-  { subjectId: 3, subjectName: "Системи автоматизації підприємств" },
-  { subjectId: 4, subjectName: "Периферійні пристрої" },
+  { subjectId: 1, subjectName: "Системи автоматизації підприємств" },
+  { subjectId: 2, subjectName: "Периферійні пристрої" },
+  { subjectId: 3, subjectName: "Функціональне програмування" },
+  { subjectId: 4, subjectName: "Цифрова обробка сигналів" },
 ];
 const answersVariants: QuestionAnswer[] = [
   { answerId: 1, answerTitle: "Повністю не погоджуюсь" },
